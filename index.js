@@ -29,9 +29,11 @@ class UI {
     document.getElementById("author").value = '';
     document.getElementById("isbn").value = '';
     }
+    showAlert(message,className){
+         alert(message);
+    }
 
 }
-
 
 let formID = document.getElementById("book-form");
 
@@ -46,9 +48,15 @@ function newBook (e){
     let BookDetails = new Book(x,y,z); 
 
     let ui = new UI();
-    ui.addBook(BookDetails);
+
+    if(x==='' || y ==='' || z==='' ){
+        ui.showAlert("Book not added","error");
+    }else{
+        ui.addBook(BookDetails);
+        ui.clearField();
+    }
+
     
-    ui.clearField();
 
     e.preventDefault();
     
